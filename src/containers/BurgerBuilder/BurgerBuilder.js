@@ -1,0 +1,89 @@
+import React, { Component } from 'react';
+
+import Aux from '../../hoc/Aux';
+import Burger from '../../components/Burger/Burger';
+import BuildControls from '../../components/Burger/BuildControls/BuildControls';
+
+const INGREDIENT_PRICE = {
+  salad: 0.5,
+  cheese: 0.6,
+  meat: 1.5,
+  bacon: 0.8
+};
+
+class BurgerBuilder extends Component {
+  state = {
+    ingredients: {
+      salad: 0,
+      bacon: 0,
+      cheese: 0,
+      meat: 0
+    },
+    totalPrice: 4
+  }
+
+  addIngredientHandler = type => {
+    // Update ingredients
+    const oldCount = this.state.ingredients[type];
+    const updatedCount = oldCount + 1;
+    const updatedIngredients = {
+      ...this.state.ingredients
+    };
+    updatedIngredients[type] = updatedCount;
+    // Update totalPrice
+    const priceAddition = INGREDIENT_PRICE[type];
+    const oldPrice = this.state.totalPrice;
+    const updatedPrice = oldPrice + priceAddition;
+
+    this.setState({ 
+      totalPrice: updatedPrice, 
+      ingredients: updatedIngredients
+    });
+  }
+
+  removeIngredientHandler = type => {
+    // Update ingredients
+    const oldCount = this.state.ingredients[type];
+    if (oldCount <= 0) {
+      return;
+    }
+    const updatedCount = oldCount - 1;
+    const updatedIngredients = {
+      ...this.state.ingredients
+    };
+    updatedIngredients[type] = updatedCount;
+    // Update totalPrice
+    const priceDeduction = INGREDIENT_PRICE[type];
+    const oldPrice = this.state.totalPrice;
+    const updatedPrice = oldPrice - priceDeduction;
+
+    this.setState({
+      totalPrice: updatedPrice,
+      ingredients: updatedIngredients
+    });
+  }
+
+  render() {
+    const disabledInfo = {
+      ...this.state.ingredients
+    };
+    // Disable Less button of a respective ingredient if its amount is equal to 0
+    for (let key in disabledInfo) {
+      // Truthy or Falsy, i.e meat: true, salad: false
+      disabledInfo[key] = disabledInfo[key] <= 0
+    }
+
+    return (
+      <Aux>
+        <Burger ingredients={this.state.ingredients} />
+        <BuildControls 
+          ingredientAdded={this.addIngredientHandler}
+          ingredientRemoved={this.removeIngredientHandler}
+          disabled={disabledInfo}
+        />
+      </Aux>
+    );
+  }
+}
+
+export default BurgerBuilder;
