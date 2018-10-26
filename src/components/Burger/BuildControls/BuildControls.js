@@ -26,8 +26,7 @@ const BuildControls = ({ ingredientAdded, ingredientRemoved, disabled, price, pu
     <button 
       className={ classes.OrderButton } 
       disabled={ purchaseable }
-      onClick={ordered}
-    >
+      onClick={ ordered }>
       ORDER NOW
     </button>
   </div>
