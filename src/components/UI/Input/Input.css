@@ -15,9 +15,11 @@
   width: 100%;
   outline: none;
   border: 1px solid #ccc;
+  margin: auto;
   padding: 6px 10px;
   background-color: #fff;
   font: inherit;
+  box-sizing: border-box;
 }
 
 .InputElement:focus {
