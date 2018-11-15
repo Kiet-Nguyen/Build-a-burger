@@ -4,6 +4,7 @@ import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const Burger = props => {
+  console.log(props);
   // Output as many <BurgerIngredient /> as given in props.ingredients[key], i.e 2 cheese and 2 meat
   let transformedIngredients = Object.keys(props.ingredients)
     .map(ingredientKey => {
