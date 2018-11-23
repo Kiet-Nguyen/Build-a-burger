@@ -10,3 +10,8 @@ export const PURCHASE_BURGER_FAIL = 'PURCHASE_BURGER_FAIL';
 export const PURCHASE_BURGER_START = 'PURCHASE_BURGER_START';
 // Use to redirect when purchase is succeed
 export const PURCHASE_INIT = 'PURCHASE_INIT';
+
+// Orders
+export const FETCH_ORDERS_START = 'FETCH_ORDERS_START';
+export const FETCH_ORDERS_SUCCESS = 'FETCH_ORDERS_SUCCESS';
+export const FETCH_ORDERS_FAIL = 'FETCH_ORDERS_FAIL';
