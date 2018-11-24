@@ -6,25 +6,25 @@ import classes from './SideDrawer.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Aux from '../../../hoc/Aux/Aux';
 
-const SideDrawer = ({ open, closed }) => {
-  let attachedClasses = [classes.SideDrawer, classes.Close];
-  if (open) {
-    attachedClasses = [classes.SideDrawer, classes.Open];
-  }
-  
-  return (
-    <Aux>
-      <Backdrop show={ open } clicked={ closed } />
-      <div className={attachedClasses.join(' ')}>
-        <div className={classes.Logo}>
-          <Logo />
-        </div>
-        <nav>
-          <NavigationItems />
-        </nav>
-      </div>
-    </Aux>
-  );
+const SideDrawer = ({ open, closed, isAuth }) => {
+	let attachedClasses = [classes.SideDrawer, classes.Close];
+	if (open) {
+		attachedClasses = [classes.SideDrawer, classes.Open];
+	}
+
+	return (
+		<Aux>
+			<Backdrop show={open} clicked={closed} />
+			<div className={attachedClasses.join(' ')}>
+				<div className={classes.Logo}>
+					<Logo />
+				</div>
+				<nav>
+					<NavigationItems isAuthenticated={isAuth} />
+				</nav>
+			</div>
+		</Aux>
+	);
 };
 
 export default SideDrawer;

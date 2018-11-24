@@ -29,21 +29,21 @@ class Orders extends Component {
 		// 	.catch(error => {
 		// 		this.setState({ loading: false });
 		// 	});
-		this.props.onFetchOrders();
+		this.props.onFetchOrders(this.props.token);
 	};
 
 	render() {
 		let orders = <Spinner />;
 		if (!this.props.loading) {
 			orders = (
-        <div>
-          {this.props.orders.map(order => {
-            return <Order key={order.id} ingredients={order.ingredients} price={order.price} />;
-          })}
-        </div>
-      );
+				<div>
+					{this.props.orders.map(order => {
+						return <Order key={order.id} ingredients={order.ingredients} price={order.price} />;
+					})}
+				</div>
+			);
 		}
-    return orders;
+		return orders;
 	}
 }
 
@@ -51,12 +51,13 @@ const mapStateToProps = state => {
 	return {
 		orders: state.order.orders,
 		loading: state.order.loading,
+		token: state.auth.token,
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onFetchOrders: () => dispatch(actions.fetchOrders()),
+		onFetchOrders: token => dispatch(actions.fetchOrders(token)),
 	};
 };
 
