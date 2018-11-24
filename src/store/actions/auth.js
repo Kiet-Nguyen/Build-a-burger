@@ -11,7 +11,7 @@ export const authStart = () => {
 export const authSuccess = (token, userId) => {
 	return {
 		type: actionTypes.AUTH_SUCCESS,
-    idToken: token,
+		idToken: token,
 		userId: userId,
 	};
 };
@@ -33,7 +33,7 @@ export const checkAuthTimeout = expirationTime => {
 	return dispatch => {
 		setTimeout(() => {
 			dispatch(logout());
-    }, expirationTime * 1000);
+		}, expirationTime * 1000);
 	};
 };
 
@@ -61,5 +61,12 @@ export const auth = (email, password, isSignUp) => {
 		} catch (error) {
 			dispatch(authFail(error.response.data.error));
 		}
+	};
+};
+
+export const setAuthRedirectPath = path => {
+	return {
+		type: actionTypes.SET_AUTH_REDIRECT_PATH,
+		path: path,
 	};
 };

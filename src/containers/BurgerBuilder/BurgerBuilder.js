@@ -9,7 +9,7 @@ import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import * as burgerBuilderActions from '../../store/actions/index';
+import * as actions from '../../store/actions/index';
 
 // const INGREDIENT_PRICE = {
 //   salad: 0.5,
@@ -98,6 +98,8 @@ class BurgerBuilder extends Component {
 		if (this.props.isAuthenticated) {
 			this.setState({ purchasing: true });
 		} else {
+			// Redirect user to checkout if user is builling ingredient before sign up
+			this.props.onSetAuthRedirectPath('/checkout');
 			this.props.history.push('/auth');
 		}
 	};
@@ -188,10 +190,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onIngredientAdded: ingName => dispatch(burgerBuilderActions.addIngredient(ingName)),
-		onIngredientRemoved: ingName => dispatch(burgerBuilderActions.deleteIngredient(ingName)),
-		onInitIngredient: () => dispatch(burgerBuilderActions.initIngredient()),
-		onInitPurchase: () => dispatch(burgerBuilderActions.purchaseInit()),
+		onIngredientAdded: ingName => dispatch(actions.addIngredient(ingName)),
+		onIngredientRemoved: ingName => dispatch(actions.deleteIngredient(ingName)),
+		onInitIngredient: () => dispatch(actions.initIngredient()),
+		onInitPurchase: () => dispatch(actions.purchaseInit()),
+		onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path)),
 	};
 };
 
