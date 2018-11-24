@@ -12,10 +12,6 @@ class Modal extends Component {
     return false;
   }
 
-  componentWillUpdate() {
-    console.log('[Modal] WillUpdate');
-  }
-
   render() {
     const { children, show, modalClosed } = this.props;
 
