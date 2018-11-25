@@ -18,7 +18,7 @@ import * as actions from '../../store/actions/index';
 //   bacon: 0.8
 // };
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 	state = {
 		// purchaseable: false,
 		purchasing: false,
